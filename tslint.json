@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-react-a11y",
+    "tslint-react-hooks"
+  ],
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "jsx-no-string-ref": false,
+    "object-literal-sort-keys": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
+    "no-var-requires": false,
+    "ordered-imports": true,
+    "no-console": false,
+    "react-hooks-nesting": "error",
+    "react-a11y-input-elements": false,
+    "variable-name": [true, "ban-keywords"]
+  }
+}
