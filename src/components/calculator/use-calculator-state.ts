@@ -64,43 +64,47 @@ export const useCalculatorState = () => {
 
       setSelectedCheckboxes(selectedCheckboxes)
       setInputsState(newInputs)
-
-      console.log('inputsState', inputsState)
     },
     [selectedCheckboxes, inputsState]
   )
 
-  const handleInputsNumberChange = (event: React.SyntheticEvent<HTMLElement>, inputid: string) => {
-    const value = (event.target as HTMLInputElement).value
+  const handleInputsNumberChange = useCallback(
+    (event: React.SyntheticEvent<HTMLElement>, inputid: string) => {
+      const value = (event.target as HTMLInputElement).value
 
-    console.log('floatValue', value)
+      console.log('floatValue', value)
 
-    const newInputs = {
-      ...inputsState,
-      inputs: {
-        ...inputsState.inputs,
-        [inputid]: value,
-      },
-    }
+      const newInputs = {
+        ...inputsState,
+        inputs: {
+          ...inputsState.inputs,
+          [inputid]: value,
+        },
+      }
 
-    setInputsState(newInputs)
+      setInputsState(newInputs)
 
-    console.log('inputsState', inputsState)
-  }
+      console.log('inputsState', inputsState)
+    },
+    [inputsState]
+  )
 
-  const onFloatFieldChange = (event: React.SyntheticEvent<HTMLElement>) => {
-    const value = (event.target as HTMLInputElement).value
+  const onFloatFieldChange = useCallback(
+    (event: React.SyntheticEvent<HTMLElement>) => {
+      const value = (event.target as HTMLInputElement).value
 
-    const newInputs = {
-      ...inputsState,
-      inputs: {
-        ...inputsState.inputs,
-        valueD: convertToFloat(parseFloatingSting(value)),
-      },
-    }
+      const newInputs = {
+        ...inputsState,
+        inputs: {
+          ...inputsState.inputs,
+          valueD: convertToFloat(parseFloatingSting(value)),
+        },
+      }
 
-    setInputsState(newInputs)
-  }
+      setInputsState(newInputs)
+    },
+    [inputsState]
+  )
 
   return {
     calculatorMode,

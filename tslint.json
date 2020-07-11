@@ -16,10 +16,15 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "no-var-requires": false,
-    "ordered-imports": true,
-    "no-console": false,
-    "react-hooks-nesting": "error",
+    "no-console": {
+      "severity": "warning",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    },
+    "react-hooks-nesting": {
+      "severity": "warning"
+    },
     "react-a11y-input-elements": false,
+    "react-a11y-role-has-required-aria-props": false,
     "variable-name": [true, "ban-keywords"]
   }
 }

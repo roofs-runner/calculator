@@ -1,3 +1,3 @@
 export * from './base-calculator'
-export * from './custom-calculator-one'
-export * from './custom-calculator-two'
+export { CustomCalculatorOne } from './custom-calculator-one'
+export { CustomCalculatorTwo } from './custom-calculator-two'

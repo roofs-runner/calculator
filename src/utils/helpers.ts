@@ -12,9 +12,5 @@ export function convertToFloat(value: number) {
 }
 
 export function parseFloatingSting(value: string) {
-  console.log('parseFloatingSting', value)
-
-  console.log(parseFloat(value.replace(',', '.')))
-
   return parseFloat(value.replace(',', '.'))
 }

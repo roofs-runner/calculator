@@ -18,6 +18,25 @@ export class BaseCalculator {
     this.valF = Number(options.valueF)
   }
 
+  calculateSum() {
+    console.log('----------i am inside calculateSum-------------')
+
+    if (this.valA && this.valB && !this.valC) {
+      console.log('this.valA && this.valB && !this.valC')
+      return this.calculateM().toFixed(2)
+    }
+    if (this.valA && this.valB && this.valC) {
+      return this.calculateP().toFixed(2)
+    }
+    if (!this.valA && this.valB && this.valC) {
+      return this.calculateT().toFixed(2)
+    }
+
+    console.log('I am inside error')
+
+    return 'error'
+  }
+
   calculateM() {
     return this.valD + (this.valD * this.valE) / 10
   }
@@ -28,20 +47,5 @@ export class BaseCalculator {
 
   calculateT() {
     return this.valD - (this.valD * this.valF) / 30
-  }
-
-  calculateSum() {
-    if (this.valA && this.valB && !this.valC) {
-      console.log('this.valA && this.valB && !this.valC')
-      return this.calculateM()
-    }
-    if (this.valA && this.valB && this.valC) {
-      return this.calculateP()
-    }
-    if (!this.valA && this.valB && this.valC) {
-      return this.calculateT()
-    }
-
-    return null
   }
 }

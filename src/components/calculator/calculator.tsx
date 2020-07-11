@@ -1,9 +1,8 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { RadioButton } from '../../blocks/RadioButton'
-import { CalculatorModes } from '../../types'
-import { BaseCalculator, CustomCalculatorOne, CustomCalculatorTwo } from '../calculator-manager'
 import { useCalculatorState } from './use-calculator-state'
+import { useCalculate } from '../calculator-manager/use-calculate'
 
 const CalculatorWrapper = styled.section`
   display: flex;
@@ -21,8 +20,10 @@ const RadioButtonItem = styled.div`
 
 const CalculationInputsWrapper = styled.div``
 
+type calculatorState = number | null | string
+
 export const Calculator = () => {
-  const [result, setResult] = useState<number | null>(null)
+  const [result, setResult] = useState<calculatorState>(null)
   const {
     calculatorMode,
     handleModeChange,
@@ -32,24 +33,30 @@ export const Calculator = () => {
     onFloatFieldChange,
   } = useCalculatorState()
 
-  const onGetResultsClick = () => {
-    switch (calculatorMode.mode) {
-      case CalculatorModes.BASE:
-        const baseCalculator = new BaseCalculator(inputsState.inputs)
-        setResult(baseCalculator.calculateSum())
-        break
-      case CalculatorModes.CUSTOM_1:
-        const customCalculator1 = new CustomCalculatorOne(inputsState.inputs)
-        setResult(customCalculator1.calculateSum())
-        break
-      case CalculatorModes.CUSTOM_2:
-        const customCalculator2 = new CustomCalculatorTwo(inputsState.inputs)
-        setResult(customCalculator2.calculateSum())
-        break
-      default:
-        return
-    }
-  }
+  const calculate = useCalculate()
+
+  const onGetResultsClick = useCallback(() => {
+    console.log('I am inside onGetResultsClick')
+
+    setResult(calculate(calculatorMode.mode, inputsState.inputs))
+
+    // switch (calculatorMode.mode) {
+    //   case CalculatorModes.BASE:
+    //     return setResult(calculate(calculatorMode.mode, inputsState.inputs))
+    //   case CalculatorModes.CUSTOM_1:
+    //     const customCalculator1 = new CustomCalculatorOne(inputsState.inputs)
+    //     setResult(customCalculator1.calculateSum())
+    //     break;
+    //   case CalculatorModes.CUSTOM_2:
+    //     const customCalculator2 = new CustomCalculatorTwo(inputsState.inputs)
+    //     setResult(customCalculator2.calculateSum())
+    //     break;
+    //   default:
+    //     return
+    // }
+  }, [calculate, calculatorMode.mode, inputsState.inputs])
+
+  console.log('--------inputsState---------', inputsState)
 
   const isButtonDisabled = useMemo(
     () => !inputsState.inputs.valueD || !inputsState.inputs.valueE || !inputsState.inputs.valueF,
@@ -58,7 +65,7 @@ export const Calculator = () => {
 
   return (
     <CalculatorWrapper>
-      <label>Select calculation type</label>
+      <h2>Select calculation type</h2>
       <CalculationTypeWrapper>
         <RadioButtonItem>
           <RadioButton
@@ -116,31 +123,33 @@ export const Calculator = () => {
         <input
           onBlur={(e) => onFloatFieldChange(e)}
           placeholder="Value D"
-          type="text"
+          type="number"
           onChange={(e) => handleInputsNumberChange(e, 'valueD')}
           id="valueD"
           value={inputsState.inputs.valueD}
-          inputMode="decimal"
         />
         <input
           placeholder="value E"
-          type="text"
+          type="number"
           onChange={(e) => handleInputsNumberChange(e, 'valueE')}
           id="valueE"
           value={inputsState.inputs.valueE}
-          inputMode="decimal"
         />
         <input
           placeholder="value F"
-          type="text"
+          type="number"
           onChange={(e) => handleInputsNumberChange(e, 'valueF')}
           id="valueF"
           value={inputsState.inputs.valueF}
-          inputMode="decimal"
         />
       </CalculationInputsWrapper>
-      <div>Result: {result}</div>
-      <button onClick={onGetResultsClick} disabled={isButtonDisabled}>
+      <div>
+        Result:{' '}
+        {result === 'error'
+          ? "Something is not right with the calculation parameters you've selected. Try adjusting them"
+          : result}
+      </div>
+      <button onClick={onGetResultsClick} disabled={isButtonDisabled} data-id="submit-button">
         Calculate
       </button>
     </CalculatorWrapper>
