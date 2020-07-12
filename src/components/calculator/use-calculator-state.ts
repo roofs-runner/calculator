@@ -44,15 +44,10 @@ export const useCalculatorState = () => {
       const value = (event.target as HTMLInputElement).dataset.id
 
       if (selectedCheckboxes.has(value)) {
-        console.log('checkboxValues', selectedCheckboxes)
         selectedCheckboxes.delete(value)
       } else {
         selectedCheckboxes.add(value)
       }
-
-      console.log(value)
-      console.log(inputid)
-      console.log('checkboxValues', selectedCheckboxes)
 
       const newInputs = {
         ...inputsState,
@@ -72,8 +67,6 @@ export const useCalculatorState = () => {
     (event: React.SyntheticEvent<HTMLElement>, inputid: string) => {
       const value = (event.target as HTMLInputElement).value
 
-      console.log('floatValue', value)
-
       const newInputs = {
         ...inputsState,
         inputs: {
@@ -83,8 +76,6 @@ export const useCalculatorState = () => {
       }
 
       setInputsState(newInputs)
-
-      console.log('inputsState', inputsState)
     },
     [inputsState]
   )
@@ -113,5 +104,6 @@ export const useCalculatorState = () => {
     handleInputsChange,
     handleInputsNumberChange,
     onFloatFieldChange,
+    selectedCheckboxes,
   }
 }

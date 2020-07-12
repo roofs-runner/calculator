@@ -5,3 +5,6 @@ export enum CalculatorModes {
   CUSTOM_1 = 'custom1',
   CUSTOM_2 = 'custom2',
 }
+
+export type Weight = 'light' | 'regular' | 'semibold' | 'bold'
+export type Weights = { [key in Weight]: number }

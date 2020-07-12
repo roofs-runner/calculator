@@ -32,6 +32,9 @@ jest.mock('./use-calculator-state', () => ({
       },
     },
     handleInputsChange: mockInputChange,
+    selectedCheckboxes: {
+      size: '',
+    },
   })),
 }))
 
@@ -56,7 +59,7 @@ describe('Calculator', () => {
     })
 
     it('renders page heading text', () => {
-      expect(component.find('h2').text()).toBe('Select calculation type')
+      expect(component.find('PageHeading').text()).toBe('Select calculation type')
     })
 
     it('sets radio button value to base', () => {
@@ -74,7 +77,7 @@ describe('Calculator', () => {
       })
 
       it('renders submit button in disabled state', () => {
-        expect(component.find('button').prop('disabled')).toBe(true)
+        expect(component.find('Button').prop('disabled')).toBe(true)
       })
     })
   })
@@ -86,6 +89,9 @@ describe('Calculator', () => {
           mode: 'base',
         },
         inputsState: INPUTS_STATE,
+        selectedCheckboxes: {
+          size: '',
+        },
       }))
       renderComponent()
       findButton()
@@ -109,6 +115,9 @@ describe('Calculator', () => {
           mode: 'custom1',
         },
         inputsState: INPUTS_STATE,
+        selectedCheckboxes: {
+          size: '',
+        },
       }))
       renderComponent()
       findButton()
@@ -129,16 +138,18 @@ describe('Calculator', () => {
         },
         inputsState: INPUTS_STATE,
         handleInputsChange: mockInputChange,
+        selectedCheckboxes: {
+          size: '',
+        },
       }))
       renderComponent()
-      console.log(component.debug())
       act(() => {
-        component.find('*[data-id="valueA"]').simulate('change')
+        ;(component.find('*[data-id="valueA"]').props() as any).onInputChange()
       })
       component.update()
     })
 
-    it('calls ... ', () => {
+    it('calls checkbox onChange handler', () => {
       expect(mockInputChange).toHaveBeenCalled()
     })
   })
