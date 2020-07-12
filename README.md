@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Link to the deployed app: https://roofs-runner.github.io/calculator/
+
 ## Motivation
 
 For this particular assignment I've used react app.
