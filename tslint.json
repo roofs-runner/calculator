@@ -25,6 +25,7 @@
     },
     "react-a11y-input-elements": false,
     "react-a11y-role-has-required-aria-props": false,
-    "variable-name": [true, "ban-keywords"]
+    "variable-name": [true, "ban-keywords"],
+    "trailing-comma": false
   }
 }

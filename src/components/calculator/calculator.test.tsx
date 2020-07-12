@@ -71,9 +71,6 @@ describe('Calculator', () => {
         mockCalculate.mockReset()
         renderComponent()
         button = component.find('*[data-id="submit-button"]')
-        act(() => {
-          button.simulate('click')
-        })
       })
 
       it('renders submit button in disabled state', () => {
@@ -82,7 +79,7 @@ describe('Calculator', () => {
     })
   })
 
-  describe('when mode is base', () => {
+  describe('when mode is base and inputs have valid configuration', () => {
     beforeEach(() => {
       ;(useCalculatorState as jest.Mock).mockImplementationOnce(() => ({
         calculatorMode: {
@@ -100,10 +97,6 @@ describe('Calculator', () => {
     })
 
     it('calculates sum in the base mode', () => {
-      expect(mockCalculate).toHaveBeenCalled()
-    })
-
-    it('when mode is base', () => {
       expect(mockCalculate).toHaveBeenCalledWith('base', INPUTS_STATE.inputs)
     })
   })
@@ -125,7 +118,7 @@ describe('Calculator', () => {
       component.update()
     })
 
-    it('when mode is base', () => {
+    it('calculates sum in custom1 mode', () => {
       expect(mockCalculate).toHaveBeenCalledWith('custom1', INPUTS_STATE.inputs)
     })
   })

@@ -6,7 +6,7 @@ const Input = styled.input`
   margin-bottom: 1.5rem;
   font-size: 1.6rem;
   font-weight: 500;
-  font-family: 'Open Sans', -apple-system;
+  font-family: 'Open Sans', -apple-system, serif;
   border: none;
   border-radius: 1rem;
   box-shadow: -2px 8px 13px -9px rgba(0, 0, 0, 0.33);

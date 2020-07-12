@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   background-color: #7aa76a;
   font-size: 1.6rem;
   font-weight: 500;
-  font-family: 'Open Sans', -apple-system;
+  font-family: 'Open Sans', -apple-system, serif;
   border: none;
   border-radius: 1rem;
 

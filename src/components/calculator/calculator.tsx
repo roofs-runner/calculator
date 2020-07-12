@@ -18,6 +18,7 @@ const CalculatorWrapper = styled.section`
     width: 100%;
   }
 `
+CalculatorWrapper.displayName = 'Calculator'
 
 const H2 = styled.h2`
   font-size: 3rem;

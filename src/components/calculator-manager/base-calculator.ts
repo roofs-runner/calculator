@@ -19,10 +19,7 @@ export class BaseCalculator {
   }
 
   calculateSum() {
-    console.log('----------i am inside calculateSum-------------')
-
     if (this.valA && this.valB && !this.valC) {
-      console.log('this.valA && this.valB && !this.valC')
       return this.calculateM().toFixed(2)
     }
     if (this.valA && this.valB && this.valC) {
@@ -31,8 +28,6 @@ export class BaseCalculator {
     if (!this.valA && this.valB && this.valC) {
       return this.calculateT().toFixed(2)
     }
-
-    console.log('I am inside error')
 
     return 'error'
   }

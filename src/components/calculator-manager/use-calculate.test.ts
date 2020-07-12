@@ -1,4 +1,4 @@
-import { renderHook, cleanup, RenderHookResult, act } from '@testing-library/react-hooks'
+import { renderHook, cleanup, RenderHookResult } from '@testing-library/react-hooks'
 import { useCalculate } from './use-calculate'
 import { paramsMock } from '../__mocks__/calculator'
 
